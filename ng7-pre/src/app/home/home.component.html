@@ -1,0 +1,33 @@
+<!-- Added a conditional style -->
+<h1 [class.gray]="h1Style">Home</h1>
+
+<!-- ngClass allows for multiple conditional styles -->
+<h3 [ngClass]="{ 'gray': h1Style, 'large': !h1Style }">Shrinking Caption</h3>
+
+<!-- This element's style will toggle with the style button click -->
+<h3 [style.color]="h1Style ? 'gray': 'black'">Toggle Me</h3>
+
+<!-- Inline ngStyle -->
+<h3 [ngStyle]="{
+	'color': h1Style ? 'gray' : 'black',
+	'font-size': !h1Style ? '1em' : '4em'
+}">Inline ngStyle</h3>
+
+<!-- The source of the firstClick() method is in home.component.ts -->
+<button (click)="firstClick()">Click me</button>
+
+<!-- Tutorial repurposes the 'Click me' button.  I separated them. -->
+<button (click)="changeTitleStyle()">Change style</button>
+
+<!-- Tutorial repurposes the 'Click me' button.  I separated them. -->
+<button (click)="serviceClick()">Call data service</button>
+
+<h1>Users</h1>
+
+<!-- Display data returned from the call to the reqres.in public api -->
+<ul *ngIf="users">
+	<li *ngFor="let user of users.data">
+		<img [src]="user.avatar">
+		<p>{{ user.first_name }} {{ user.last_name }}</p>
+	</li>
+</ul>
